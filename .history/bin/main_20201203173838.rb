@@ -11,11 +11,11 @@ puts '| 7 | 8 | 9 |'
 puts board_line
 
 puts 'Type your first move: '
-turn1 = gets.chomp
-puts "Your move #{turn1} was displayed\n\n"
+turn_one = gets.chomp
+puts "Your move #{turn_1} was displayed\n\n"
 puts 'Type your second move: '
-turn2 = gets.chomp
-puts "Your move #{turn2} was displayed\n\n"
+turn_two = gets.chomp
+puts "Your move #{turn_2} was displayed\n\n"
 puts 'Type your third move: '
-turn3 = gets.chomp
-puts "Your move #{turn3} was displayed\n\n"
+turn_3 = gets.chomp
+puts "Your move #{turn_3} was displayed\n\n"
