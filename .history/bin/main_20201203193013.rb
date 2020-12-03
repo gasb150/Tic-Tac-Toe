@@ -19,14 +19,7 @@ while game_on
    game_on = false if turns_available > 0
    puts "Type your next move: \n (moves available: #{available_moves.to_s}"
    turn = gets.chomp
-   move = available_moves.to_a.select { |num| return false if num != turn.to_i}
-   if move = false
-      puts "Select an option from the available as shown"
-   else
-      chosen = available_moves.map(turn)
-      available_moves = available_moves - chosen
-      turns_available -= 1
-   end
+   turns_available -= 1
    
    # if winner # and/or draw (the exact condition in this milestone is not important)
 end

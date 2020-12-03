@@ -20,7 +20,7 @@ while game_on
    puts "Type your next move: \n (moves available: #{available_moves.to_s}"
    turn = gets.chomp
    move = available_moves.to_a.select { |num| return false if num != turn.to_i}
-   if move = false
+   if move
       puts "Select an option from the available as shown"
    else
       chosen = available_moves.map(turn)
