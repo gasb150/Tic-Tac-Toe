@@ -23,7 +23,8 @@ end
 gameboard(available_moves_shown)
 p available_moves
 turns_available = 9
-while win == false || available_moves.nil?
+
+while win == false && !turns_available.zero?
   if turns_available.odd?
      puts "Ready Player One: \n (moves available: #{available_moves.to_s}"
   else
@@ -73,19 +74,7 @@ while win == false || available_moves.nil?
        end
 
          end
-        end
-        #  for i in rows_cols[i]
-        #     if (chosen_p1 == rows_cols[i])
-        #        p "PLAYER 1 WINS"
-        #        win = true
-        #     elsif (chosen_p2 == rows_cols[i])
-        #        p "PLAYER 2 WINS"
-        #        win = true
-        #    end
-        # end
-      
-  
-  
+        end 
 end
 
 if win == false
