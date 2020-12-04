@@ -1,9 +1,8 @@
 class UserInterface
-  attr_writer :users
-
- def self.players
+ 
+  def self.players
   @@players
-end
+  end
 
    def initialize (n_users)
      @players=[]
@@ -69,7 +68,9 @@ end
  
   class LogicGame
 
-    
+    def initialize(n)
+      @@players=n
+    end
 
     def self.gameboard(available_moves_shown)
       board_line = '+---+---+---+'
@@ -91,9 +92,9 @@ end
       chosen_p2 = []
       while win == false && !turns_available.zero?
         if turns_available.odd?
-          puts "Ready Player One: \n (moves available: #{available_moves}"
+          puts "Ready #{@@players[0]}: \n (moves available: #{available_moves}"
         else
-          puts "Ready Player Two: \n (moves available: #{available_moves}"
+          puts "Ready #{@@players[1]}: \n (moves available: #{available_moves}"
         end
         turn = gets.chomp.to_i
         map_available = available_moves.reject { |a| a.to_i == turn.to_i }

@@ -12,7 +12,7 @@ name2 = gets.chomp.to_s
 
 UserInterface.player_name(name1, name2)
 UserInterface.player_select
-p UserInterface.players
+LogicGame.new(UserInterface.players)
 LogicGame.gameboard(available_moves_shown)
 p available_moves
 turns_available = 9
