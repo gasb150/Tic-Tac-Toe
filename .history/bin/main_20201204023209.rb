@@ -22,7 +22,7 @@ gameboard(available_moves_shown)
 
 p available_moves
 turns_available = 6
-while turns_available.positive?
+while turns_available > 0
   if turns_available.even?
     puts "Ready Player One: \n (moves available: #{available_moves}"
   else
@@ -31,7 +31,7 @@ while turns_available.positive?
   turn = gets.chomp.to_i
   map_available = available_moves.reject { |a| a.to_i == turn.to_i }
   p turn
-  if available_moves.length == map_available.length || turn.zero?
+  if available_moves.length == map_available.length || turn == 0
     puts 'Select an option from the available as shown'
     gameboard(available_moves_shown)
     next
@@ -50,17 +50,18 @@ while turns_available.positive?
     if turns_available < 2
       chosen_p1.sort
       chosen_p2.sort
+      arr = []
       i = 0
       p chosen_p2
       for i in rows_cols[i]
         if chosen_p1 == rows_cols[i]
           p 'PLAYER 1 WINS'
           win = true
-          next
+          break
         elsif chosen_p2 == rows_cols[i]
           p 'PLAYER 2 WINS'
           win = true
-          next
+          break
         end
       end
     end

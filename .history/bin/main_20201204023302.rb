@@ -50,17 +50,18 @@ while turns_available.positive?
     if turns_available < 2
       chosen_p1.sort
       chosen_p2.sort
+      arr = []
       i = 0
       p chosen_p2
       for i in rows_cols[i]
         if chosen_p1 == rows_cols[i]
           p 'PLAYER 1 WINS'
           win = true
-          next
+          break
         elsif chosen_p2 == rows_cols[i]
           p 'PLAYER 2 WINS'
           win = true
-          next
+          break
         end
       end
     end

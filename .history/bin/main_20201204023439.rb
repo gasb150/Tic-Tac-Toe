@@ -60,7 +60,7 @@ while turns_available.positive?
         elsif chosen_p2 == rows_cols[i]
           p 'PLAYER 2 WINS'
           win = true
-          next
+          break
         end
       end
     end
