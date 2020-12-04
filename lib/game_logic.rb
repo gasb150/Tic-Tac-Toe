@@ -67,7 +67,7 @@ class UserInterface
 #  end
  
   class LogicGame
-
+    @@turns_available = 9
     def initialize(n)
       @@players=n
     end
@@ -83,22 +83,22 @@ class UserInterface
       puts board_line
     end
     
-    def self.game_play(turns_available)
+    def self.game_play()
       win = false
       available_moves = (1..9).to_a
       available_moves_shown = available_moves
       rows_cols = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
       chosen_p1 = []
       chosen_p2 = []
-      while win == false && !turns_available.zero?
-        if turns_available.odd?
+      while win == false && !@@turns_available.zero?
+        if @@turns_available.odd?
           puts "Ready #{@@players[0]}: \n (moves available: #{available_moves}"
         else
           puts "Ready #{@@players[1]}: \n (moves available: #{available_moves}"
         end
         turn = gets.chomp.to_i
         map_available = available_moves.reject { |a| a.to_i == turn.to_i }
-        p turn
+        puts "you choose #{turn}"
         if available_moves.length == map_available.length || turn.zero?
           puts 'Select an option from the available as shown'
           gameboard(available_moves_shown)
@@ -106,7 +106,7 @@ class UserInterface
         else
           chosen = available_moves - map_available
           available_moves -= chosen
-          if turns_available.odd?
+          if @@turns_available.odd?
             chosen_p1 << chosen[-1]
             available_moves_shown[chosen[-1] - 1] = 'X'
           else
@@ -114,7 +114,7 @@ class UserInterface
             available_moves_shown[chosen[-1] - 1] = 'O'
           end
           gameboard(available_moves_shown)
-          turns_available -= 1
+          @@turns_available -= 1
           if chosen_p1.size >= 3
             rows_cols.each do |n_row|
               count1 = 0
