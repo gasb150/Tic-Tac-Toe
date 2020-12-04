@@ -1,3 +1,4 @@
+
 # rubocop: disable Metrics/BlockNesting
 
 available_moves = (1..9).to_a
