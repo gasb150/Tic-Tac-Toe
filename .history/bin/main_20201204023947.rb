@@ -2,7 +2,7 @@
 
 available_moves = (1..9).to_a
 available_moves_shown = available_moves
-# rows_cols = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+rows_cols = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
 chosen_p1 = []
 chosen_p2 = []
 win = false
@@ -20,6 +20,7 @@ end
 
 gameboard(available_moves_shown)
 
+p available_moves
 turns_available = 6
 while turns_available.positive?
   if turns_available.even?
@@ -45,23 +46,23 @@ while turns_available.positive?
     end
     gameboard(available_moves_shown)
     turns_available -= 1
-    #  if turns_available < 2
-    #    chosen_p1.sort
-    #    chosen_p2.sort
-    #    i = 0
-    #    p chosen_p2
-    #    for i in rows_cols[i]
-    #      if chosen_p1 == rows_cols[i]
-    #        p 'PLAYER 1 WINS'
-    #        win = true
-    #        next
-    #      elsif chosen_p2 == rows_cols[i]
-    #        p 'PLAYER 2 WINS'
-    #        win = true
-    #        next
-    #      end
-    #     end
-    #  end
+   #  if turns_available < 2
+   #    chosen_p1.sort
+   #    chosen_p2.sort
+   #    i = 0
+   #    p chosen_p2
+   #    for i in rows_cols[i]
+   #      if chosen_p1 == rows_cols[i]
+   #        p 'PLAYER 1 WINS'
+   #        win = true
+   #        next
+   #      elsif chosen_p2 == rows_cols[i]
+   #        p 'PLAYER 2 WINS'
+   #        win = true
+   #        next
+   #      end
+   #     end
+   #  end
 
   end
 end
