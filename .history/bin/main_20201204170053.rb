@@ -54,20 +54,20 @@ while win == false && !turns_available.zero?
 
       rows_cols.each do |n_row|
         count1 = 0
-        count2 = 0
+        count_2 = 0
         n_row.each do |n|
           if chosen_p1.include?(n)
             count1 += 1
           elsif chosen_p2.include?(n)
-            count2 += 1
+            count_2 += 1
           else
             count1 = 0
-            count2 = 0
+            count_2 = 0
           end
           if count1 > 2
             p 'win'
             win = true
-          elsif count2 > 2
+          elsif count_2 > 2
             p ' player 2 win'
             win = true
           end
