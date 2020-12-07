@@ -14,7 +14,7 @@ UserInterface.show_game_instructions
 UserInterface.new(name1, name2)
 LogicGame.new(UserInterface.players)
 LogicGame.gameboard(available_moves_shown)
-n = LogicGame.game_play()
-UserInterface.show_win_game()
+LogicGame.game_play()
+puts UserInterface.show_win_game()
 
 # rubocop: enable Metrics/BlockNesting

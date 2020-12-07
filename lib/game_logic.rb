@@ -22,23 +22,29 @@ class UserInterface
      p "You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers"
    end
    
-   def self.show_invalid_move (available_moves, map_available, turn)
-    available_moves.length == map_available.length || turn.zero?
-    return 'Select an option from the available as shown'
-   end
+    def self.show_invalid_move (available_moves, map_available, turn)
+     return 'Select an option from the available as shown' if available_moves.length == map_available.length || turn.zero?
+    end
  
    def self.show_win_game ()
-     p LogicGame.player_winner()
+     if  !LogicGame.player_winner().nil?
+      n = LogicGame.player_winner()
+     else
+      n = "It's a draw"
     end
+    return n
+  end
  
    
  
- end
+end
 
-  class LogicGame
-    
-    
+class LogicGame
+    @@rows_cols = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+    @@chosen_p1 = []
+    @@chosen_p2 = []
     @@turns_available = 9
+
     def initialize(n)
       @@players=n
       @@player_winner =[]
@@ -59,9 +65,6 @@ class UserInterface
       win = false
       available_moves = (1..9).to_a
       available_moves_shown = available_moves
-      rows_cols = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-      chosen_p1 = []
-      chosen_p2 = []
       while win == false && !@@turns_available.zero?
         if @@turns_available.odd?
           puts "Ready #{@@players[0]}: \n (moves available: #{available_moves}"
@@ -71,52 +74,61 @@ class UserInterface
         turn = gets.chomp.to_i
         map_available = available_moves.reject { |a| a.to_i == turn.to_i }
         puts "you choose #{turn}"
-        if !UserInterface.show_invalid_move(available_moves, map_available, turn).nil?
+        if UserInterface.show_invalid_move(available_moves,map_available,turn)
           gameboard(available_moves_shown)
           next
         else
-          chosen = available_moves - map_available
-          available_moves -= chosen
-          if @@turns_available.odd?
-            chosen_p1 << chosen[-1]
-            available_moves_shown[chosen[-1] - 1] = 'X'
-          else
-            chosen_p2 << chosen[-1]
-            available_moves_shown[chosen[-1] - 1] = 'O'
-          end
+          available_moves_shown = board_modification(available_moves, map_available, available_moves_shown)
           gameboard(available_moves_shown)
           @@turns_available -= 1
-          if chosen_p1.size >= 3
-            rows_cols.each do |n_row|
-              count1 = 0
-              count2 = 0
-              n_row.each do |n|
-                if chosen_p1.include?(n)
-                  count1 += 1
-                elsif chosen_p2.include?(n)
-                  count2 += 1
-                else
-                  count1 = 0
-                  count2 = 0
-                end
-                if !comparing_players(count1,count2).nil? 
-                  win = true
-                end
-              end
-            end
+          if @@chosen_p1.size >= 3
+           win = comparing_players(win)
           end
         end
       end
-        p "It's a draw" if win == false
       end
- 
-    def array_modification
-     
+
+      def self.comparing_players (win)
+        @@rows_cols
+        @@chosen_p1
+        @@rows_cols.each do |n_row|
+        count1 = 0
+        count2 = 0
+        n_row.each do |n|
+          if @@chosen_p1.include?(n)
+            count1 += 1
+          elsif @@chosen_p2.include?(n)
+            count2 += 1
+          else
+            count1 = 0
+            count2 = 0
+          end
+          if !chossing_winner(count1,count2).nil? 
+            win = true
+          end
+        end
+      end
+      return win
+    end
+    
+    def self.board_modification(available_moves, map_available, available_moves_shown)
+      chosen = available_moves - map_available
+      available_moves -= chosen
+      if @@turns_available.odd?
+        @@chosen_p1 << chosen[-1]
+        available_moves_shown[chosen[-1] - 1] = 'X'
+      else
+        @@chosen_p2 << chosen[-1]
+        available_moves_shown[chosen[-1] - 1] = 'O'
+      end
+        available_moves_shown
     end
  
+    def self.player_winner()
+      @@player_winner
+    end
 
-
-    def self.comparing_players(count1,count2)
+    def self.chossing_winner(count1,count2)
       win=false
       if count1 > 2
         player_winner = 'player 1 win'
@@ -129,22 +141,7 @@ class UserInterface
       return @@player_winner
     end
 
-    def self.player_winner()
-      @@player_winner
-    end
-
-    def computer_not_looser
-     
-    end
+    
  
   end
- 
- 
-#  x = UserInterface.new(2)
-  
- 
-#  x.player_name("juan")
-#  x.player_select
-
-#  =end
  
