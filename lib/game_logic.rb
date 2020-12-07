@@ -90,8 +90,6 @@ class LogicGame
       
       end
 
-      def get_turn(turn)
-
       def self.comparing_players (win)
         @@rows_cols
         @@chosen_p1
