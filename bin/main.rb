@@ -13,4 +13,3 @@ LogicGame.new(UserInterface.players)
 LogicGame.gameboard(available_moves_shown)
 LogicGame.game_play
 puts UserInterface.show_win_game
-

@@ -1,4 +1,4 @@
-# rubocop: disable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength
+# rubocop: disable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength, Metrics/PerceivedComplexity
 class UserInterface
   def self.players
     @@players
@@ -41,8 +41,8 @@ class LogicGame
   @@chosen_p2 = []
   @@turns_available = 9
 
-  def initialize(n)
-    @@players = n
+  def initialize(numb)
+    @@players = numb
     @@player_winner = []
   end
 
@@ -128,4 +128,4 @@ class LogicGame
   end
 end
 
-# rubocop: enable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength
+# rubocop: enable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength, Metrics/PerceivedComplexity
