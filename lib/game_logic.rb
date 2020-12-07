@@ -1,6 +1,6 @@
 # rubocop: disable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength, Metrics/PerceivedComplexity
 class UserInterface
-  
+
   def self.players
     @@players
   end
@@ -20,6 +20,13 @@ class UserInterface
     p 'The game start in a grid table of 3x3 cells with numbers.'
     p 'You will be 2 players, the player 1 play first, and the second... play second, one turn by one, choosing what number play'
     p 'You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers'
+  end
+  
+  def self.who_play? (turns_available)
+    if @@turns_available.odd?
+    puts "Ready #{@@players[0]}: \n (moves available: #{@@available_moves}"
+  else
+    puts "Ready #{@@players[1]}: \n (moves available: #{@@available_moves}"
   end
 
   def self.show_invalid_move(available_moves, map_available, turn)
@@ -64,12 +71,9 @@ class LogicGame
   def self.game_play(turn)
     @turn=turn
     @available_moves_shown=@@available_moves_shown
-      
-      if @@turns_available.odd?
-        puts "Ready #{@@players[0]}: \n (moves available: #{@@available_moves}"
-      else
-        puts "Ready #{@@players[1]}: \n (moves available: #{@@available_moves}"
-      end
+    
+    UserInterface.who_play?(@@turns_available)
+
       @map_available = @@available_moves.reject { |a| a.to_i == turn.to_i }
       puts "you choose #{@turn}"
       if UserInterface.show_invalid_move(@@available_moves, @map_available, @turn)
