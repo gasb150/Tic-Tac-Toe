@@ -61,6 +61,7 @@ class LogicGame
       puts board_line
     end
     
+
     def self.game_play()
       win = false
       available_moves = (1..9).to_a
@@ -86,7 +87,10 @@ class LogicGame
           end
         end
       end
+      
       end
+
+      def get_turn(turn)
 
       def self.comparing_players (win)
         @@rows_cols
@@ -107,11 +111,12 @@ class LogicGame
             win = true
           end
         end
-      end
-      return win
-    end
+        end
+        return win
+       end   
     
-    def self.board_modification(available_moves, map_available, available_moves_shown)
+   
+       def self.board_modification(available_moves, map_available, available_moves_shown)
       chosen = available_moves - map_available
       available_moves -= chosen
       if @@turns_available.odd?
@@ -131,10 +136,10 @@ class LogicGame
     def self.chossing_winner(count1,count2)
       win=false
       if count1 > 2
-        player_winner = 'player 1 win'
+        player_winner = "#{@@players[0]} win"
         win = true
       elsif count2 > 2
-        player_winner = ' player 2 win'
+        player_winner = " #{@@players[1]} win"
         win = true
       end
       @@player_winner=player_winner
