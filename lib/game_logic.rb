@@ -1,5 +1,6 @@
 # rubocop: disable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength, Metrics/PerceivedComplexity
 class UserInterface
+  
   def self.players
     @@players
   end
@@ -42,16 +43,13 @@ class LogicGame
   @@turns_available = 9
   @@available_moves = (1..9).to_a
   @@available_moves_shown = @@available_moves
-
+  
   def initialize(numb)
     @@players = numb
     @@player_winner = []
   end
   
-  def self.gameboard(available_moves_shown)
-    board_line = '+---+---+---+'
-    return " #{board_line}\n | #{available_moves_shown[0]} | #{available_moves_shown[1]} | #{available_moves_shown[2]} |\n #{board_line}\n | #{available_moves_shown[3]} | #{available_moves_shown[4]} | #{available_moves_shown[5]} |\n #{board_line}\n | #{available_moves_shown[6]} | #{available_moves_shown[7]} | #{available_moves_shown[8]} |\n #{board_line}"
-  end
+
   
 
   def self.keep_playing()
@@ -75,10 +73,10 @@ class LogicGame
       @map_available = @@available_moves.reject { |a| a.to_i == turn.to_i }
       puts "you choose #{@turn}"
       if UserInterface.show_invalid_move(@@available_moves, @map_available, @turn)
-        gameboard(@@available_moves_shown)
+        Board.gameboard()
       else
-        available_moves_shown = board_modf( @map_available, @available_moves_shown)
-        gameboard(available_moves_shown)
+        available_moves_shown = Board.board_modf(@@available_moves, @map_available, @@available_moves_shown, @@turns_available)
+        Board.gameboard()
         @@turns_available -= 1
         win = comparing_players(win) if @@chosen_p1.size >= 3
       end
@@ -105,17 +103,7 @@ class LogicGame
     win
   end
 
-  def self.board_modf( map_available, available_moves_shown)
-    chosen = @@available_moves - @map_available
-    if @@turns_available.odd?
-      @@chosen_p1 << chosen[-1]
-      available_moves_shown[chosen[-1] - 1] = 'X'
-    else
-      @@chosen_p2 << chosen[-1]
-      available_moves_shown[chosen[-1] - 1] = 'O'
-    end
-    available_moves_shown
-  end
+  
 
   def self.player_winner
     @@player_winner
@@ -130,6 +118,47 @@ class LogicGame
     @@player_winner = player_winner
     @@player_winner
   end
+
+  def self.available_moves_shown
+    @@available_moves_shown
+  end
+
+  def self.chosen_p1
+  @@chosen_p1
+  end
+  def self.chosen_p2
+  @@chosen_p2
+  end
+
+end
+
+
+class Board
+
+  @@available_moves_shown = LogicGame.available_moves_shown
+  @@chosen_p1 = LogicGame.chosen_p1
+  @@chosen_p2= LogicGame.chosen_p2
+  def self.board_modf(available_moves, map_available, available_moves_shown, turns_available)
+    @turns_available = turns_available
+    @available_moves = available_moves
+    @map_available = map_available
+    chosen = @available_moves - @map_available
+    if @turns_available.odd?
+      @@chosen_p1 << chosen[-1]
+      available_moves_shown[chosen[-1] - 1] = 'X'
+    else
+      @@chosen_p2 << chosen[-1]
+      available_moves_shown[chosen[-1] - 1] = 'O'
+    end
+    available_moves_shown
+  end
+
+  def self.gameboard()
+    available_moves_shown=@@available_moves_shown
+    board_line = '+---+---+---+'
+    return " #{board_line}\n | #{available_moves_shown[0]} | #{available_moves_shown[1]} | #{available_moves_shown[2]} |\n #{board_line}\n | #{available_moves_shown[3]} | #{available_moves_shown[4]} | #{available_moves_shown[5]} |\n #{board_line}\n | #{available_moves_shown[6]} | #{available_moves_shown[7]} | #{available_moves_shown[8]} |\n #{board_line}"
+  end
+
 end
 
 # rubocop: enable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength, Metrics/PerceivedComplexity
