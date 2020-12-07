@@ -3,73 +3,45 @@ class UserInterface
   def self.players
   @@players
   end
-
-   def initialize (n_users)
-     @players=[]
-     @@players=[]
-     @@users=n_users
-   end
+  
+  def initialize (name1,name2)
+      @name1=name1
+      @name2=name2
+      @@players=[]
+      @@players<<@name1
+      @@players<<@name2
+      puts "you are #{@player_1} your mark is (X) and you choose go vs #{@player_2} his mark is (O"
+  end
  
-   def self.player_name (name1=@player_1,name2=@player_2)
-    
-     p @@users.is_a?(Integer)
-    
-     if @@users == 1
-       @name1 = name1
-     else
-     
-       @name1=name1
-       @name2=name2
-     end
-   end
- 
-   def self.player_select()
-     if @@users == 1
-       @player_1 = @name1
-       @player_2="computer"
-     else
-       @player_1= @name1
-       @player_2= @name2
-     end
-     puts "you are #{@player_1} and you choose go vs #{@player_2}"
-     @@players<<@player_1
-     @@players<<@player_2
-   end
   
    def self.show_game_instructions()
-     puts "Welcome! \n This is our Tic-Tac-Toc Game"
+     p "Welcome! \n This is our Tic-Tac-Toc Game"
+     p "For this game you will need THE AMAZING INSTRUCTIONS: "
+     p "The game start in a grid table of 3x3 cells with numbers."
+     p "You will be 2 players, the player 1 play first, and the second... play second, one turn by one, choosing what number play"
+     p "You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers"
    end
    
-   def show_invalid_move
-     
+   def self.show_invalid_move (available_moves, map_available, turn)
+    available_moves.length == map_available.length || turn.zero?
+    return 'Select an option from the available as shown'
    end
  
-   def show_win_game
-     
-   end
+   def self.show_win_game ()
+     p LogicGame.player_winner()
+    end
  
    
  
  end
 
-#  =begin
- 
-#  class player
- 
-#    def player_name
-     
-#    end
- 
-#    def arrays_player
- 
-#    end
- 
-#  end
- 
   class LogicGame
+    
+    
     @@turns_available = 9
     def initialize(n)
       @@players=n
+      @@player_winner =[]
     end
 
     def self.gameboard(available_moves_shown)
@@ -99,8 +71,7 @@ class UserInterface
         turn = gets.chomp.to_i
         map_available = available_moves.reject { |a| a.to_i == turn.to_i }
         puts "you choose #{turn}"
-        if available_moves.length == map_available.length || turn.zero?
-          puts 'Select an option from the available as shown'
+        if !UserInterface.show_invalid_move(available_moves, map_available, turn).nil?
           gameboard(available_moves_shown)
           next
         else
@@ -128,33 +99,40 @@ class UserInterface
                   count1 = 0
                   count2 = 0
                 end
-                if count1 > 2
-                  p 'win'
-                  win = true
-                elsif count2 > 2
-                  p ' player 2 win'
+                if !comparing_players(count1,count2).nil? 
                   win = true
                 end
               end
             end
-        
-            end
-           
           end
-      
-        
+        end
       end
-      p "It's a draw" if win == false
-    end
+        p "It's a draw" if win == false
+      end
  
     def array_modification
      
     end
  
-    def comparing_players
-      
+
+
+    def self.comparing_players(count1,count2)
+      win=false
+      if count1 > 2
+        player_winner = 'player 1 win'
+        win = true
+      elsif count2 > 2
+        player_winner = ' player 2 win'
+        win = true
+      end
+      @@player_winner=player_winner
+      return @@player_winner
     end
- 
+
+    def self.player_winner()
+      @@player_winner
+    end
+
     def computer_not_looser
      
     end
