@@ -152,6 +152,7 @@ class UserInterface
     end
  
     def comparing_players
+      
     end
  
     def computer_not_looser
