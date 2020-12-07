@@ -10,7 +10,7 @@ name2 = gets.chomp.to_s
 
 UserInterface.new(name1, name2)
 LogicGame.new(UserInterface.players)
-LogicGame.gameboard(available_moves_shown)
+puts LogicGame.gameboard(available_moves_shown)
 while  LogicGame.keep_playing == true
 LogicGame.game_play (gets.chomp.to_i)
 end

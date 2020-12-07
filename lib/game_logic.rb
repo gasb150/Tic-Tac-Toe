@@ -50,7 +50,7 @@ class LogicGame
   
   def self.gameboard(available_moves_shown)
     board_line = '+---+---+---+'
-    puts " #{board_line}\n | #{available_moves_shown[0]} | #{available_moves_shown[1]} | #{available_moves_shown[2]} |\n #{board_line}\n | #{available_moves_shown[3]} | #{available_moves_shown[4]} | #{available_moves_shown[5]} |\n #{board_line}\n | #{available_moves_shown[6]} | #{available_moves_shown[7]} | #{available_moves_shown[8]} |\n #{board_line}"
+    return " #{board_line}\n | #{available_moves_shown[0]} | #{available_moves_shown[1]} | #{available_moves_shown[2]} |\n #{board_line}\n | #{available_moves_shown[3]} | #{available_moves_shown[4]} | #{available_moves_shown[5]} |\n #{board_line}\n | #{available_moves_shown[6]} | #{available_moves_shown[7]} | #{available_moves_shown[8]} |\n #{board_line}"
   end
   
 
