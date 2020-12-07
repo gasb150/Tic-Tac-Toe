@@ -11,5 +11,8 @@ name2 = gets.chomp.to_s
 UserInterface.new(name1, name2)
 LogicGame.new(UserInterface.players)
 LogicGame.gameboard(available_moves_shown)
-LogicGame.game_play
+while  LogicGame.keep_playing == true
+LogicGame.game_play (gets.chomp.to_i)
+end
 puts UserInterface.show_win_game
+
