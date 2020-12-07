@@ -1,4 +1,4 @@
-# rubocop: enable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength
+# rubocop: disable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength
 class UserInterface
   def self.players
     @@players
