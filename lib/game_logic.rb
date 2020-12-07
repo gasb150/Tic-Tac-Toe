@@ -11,27 +11,28 @@ class UserInterface
     @@players = []
     @@players << @name1
     @@players << @name2
-    puts "you are #{@player_1} your mark is (X) and you choose go vs #{@player_2} his mark is (O"
+    return "you are #{@name1} your mark is (X) and you choose go vs #{@name2} his mark is (O)"
   end
 
   def self.show_game_instructions
-    p "Welcome! \n This is our Tic-Tac-Toc Game"
-    p 'For this game you will need THE AMAZING INSTRUCTIONS: '
-    p 'The game start in a grid table of 3x3 cells with numbers.'
-    p 'You will be 2 players, the player 1 play first, and the second... play second, one turn by one, choosing what number play'
-    p 'You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers'
+    return  "Welcome! \n This is our Tic-Tac-Toc Game \n For this game you will need THE AMAZING INSTRUCTIONS: \n The game start in a grid table of 3x3 cells with numbers.\n You will be 2 players, the player 1 play first, and the second... play second, one turn by one, choosing what number play \n You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers\n"
   end
   
-  def self.who_play? (turns_available)
-    if @@turns_available.odd?
-    puts "Ready #{@@players[0]}: \n (moves available: #{@@available_moves}"
-  else
-    puts "Ready #{@@players[1]}: \n (moves available: #{@@available_moves}"
+  def self.show_who_play ()
+   return LogicGame.who_play?()
+  end
+  
+  def self.choose()
+    @turn = LogicGame.turn
+    return "you choose #{@turn}"
   end
 
-  def self.show_invalid_move(available_moves, map_available, turn)
-    return 'Select an option from the available as shown' if available_moves.length == map_available.length || turn.zero?
+  def self.invalid_move?()
+    return 'You choose an unvalid option, please try again and select an option from the available as shown' 
   end
+
+
+
 
   def self.show_win_game
     n = if !LogicGame.player_winner.nil?
@@ -50,15 +51,13 @@ class LogicGame
   @@turns_available = 9
   @@available_moves = (1..9).to_a
   @@available_moves_shown = @@available_moves
+  @@turn=0
   
   def initialize(numb)
     @@players = numb
     @@player_winner = []
   end
   
-
-  
-
   def self.keep_playing()
     @@win=false
    if @@win == false && !@@turns_available.zero?
@@ -68,16 +67,23 @@ class LogicGame
   end
   end
 
-  def self.game_play(turn)
-    @turn=turn
-    @available_moves_shown=@@available_moves_shown
-    
-    UserInterface.who_play?(@@turns_available)
+  def self.who_play?()
+    if @@turns_available.odd?
+    return "Ready #{@@players[0]}: \n (moves available: #{@@available_moves}"
+  else
+    return "Ready #{@@players[1]}: \n (moves available: #{@@available_moves}"
+  end
+end
 
+  def self.game_play(turn)
+    @@turn=turn
+    @turn=turn
+    @@available_moves_shown=@@available_moves_shown   
       @map_available = @@available_moves.reject { |a| a.to_i == turn.to_i }
-      puts "you choose #{@turn}"
-      if UserInterface.show_invalid_move(@@available_moves, @map_available, @turn)
-        Board.gameboard()
+      
+       if @@available_moves.length == @map_available.length || turn.zero?
+        puts 'Select an option from the available as shown'
+        gameboard(available_moves_shown)
       else
         available_moves_shown = Board.board_modf(@@available_moves, @map_available, @@available_moves_shown, @@turns_available)
         Board.gameboard()
@@ -107,8 +113,6 @@ class LogicGame
     win
   end
 
-  
-
   def self.player_winner
     @@player_winner
   end
@@ -132,6 +136,9 @@ class LogicGame
   end
   def self.chosen_p2
   @@chosen_p2
+  end
+  def self.turn
+    @@turn
   end
 
 end
