@@ -1,3 +1,4 @@
+
 require './lib/game_logic.rb'
 require "colorize"
 p String.colors
@@ -14,11 +15,13 @@ name2 = gets.chomp.to_s
 UserInterface.new(name1, name2)
 LogicGame.new(UserInterface.players)
 puts Board.gameboard()
-while  LogicGame.keep_playing == true
-puts UserInterface.show_who_play
-puts UserInterface.choose()
-puts LogicGame.game_play (gets.chomp.to_i)
-puts Board.gameboard()
+
+while  LogicGame.keep_playing() == true
+  p LogicGame.keep_playing()
+ puts UserInterface.show_who_play
+ puts UserInterface.choose()
+ LogicGame.game_play (gets.chomp.to_i)
+
+ puts Board.gameboard()
 end
 puts UserInterface.show_win_game
-

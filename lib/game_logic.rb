@@ -25,17 +25,13 @@ class UserInterface
   
   def self.choose()
     @turn = LogicGame.turn
-    if @turn>=1
     return "you choose #{@turn}".blue
-    end
+    
   end
 
   def self.invalid_move?()
     return 'You choose an unvalid option, please try again and select an option from the available as shown'.red 
   end
-
-
-
 
   def self.show_win_game
     n = if !LogicGame.player_winner.nil?
@@ -55,20 +51,14 @@ class LogicGame
   @@available_moves = (1..9).to_a
   @@available_moves_shown = @@available_moves
   @@turn=0
+  @@win=false
   
   def initialize(numb)
     @@players = numb
     @@player_winner = []
   end
   
-  def self.keep_playing()
-    @@win=false
-   if @@win == false && !@@turns_available.zero?
-    return true
-  else
-    false
-  end
-  end
+  
 
   def self.who_play?()
     if @@turns_available.odd?
@@ -91,10 +81,10 @@ end
         available_moves_shown = Board.board_modf(@@available_moves, @map_available, @@available_moves_shown, @@turns_available)
         Board.gameboard()
         @@turns_available -= 1
-        win = comparing_players(win) if @@chosen_p1.size >= 3
+        @@win = comparing_players(@win) if @@chosen_p1.size >= 3
       end
     
-    @@win=win
+    @@win
   end
 
   def self.comparing_players(win)
@@ -110,10 +100,10 @@ end
           count1 = 0
           count2 = 0
         end
-        win = true unless chossing_winner(count1, count2).nil?
+        @@win = true unless chossing_winner(count1, count2).nil?
       end
     end
-    win
+    @@win
   end
 
   def self.player_winner
@@ -143,6 +133,14 @@ end
   def self.turn
     @@turn
   end
+  
+   def self.keep_playing()
+    if !@@win.nil? && !@@turns_available.zero?
+     return true
+   else
+     false
+   end
+   end
 
 end
 
