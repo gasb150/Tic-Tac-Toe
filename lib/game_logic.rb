@@ -14,7 +14,7 @@ class UserInterface
   end
 
   def self.show_players
-    "you are #{@@players[0]} your mark is (X) and you choose go vs #{@@players[1]} his mark is (O)"
+    "\n#{@@players[0]}, your mark is (X)!\n\n#{@@players[1]}, your mark is (O)!\n\n".yellow
   end
 
   def self.welcome
@@ -24,11 +24,11 @@ class UserInterface
     ╚╝║║╚╝║║║║─╚╝──╚╝║║╚╣║─║║║─╚╝──╚╝║║╚╣║─║║╚══╗
     ──║║──║║║║─╔╗╔══╗║║─║╚═╝║║─╔╗╔══╗║║─║║─║║╔══╝
     ──║║─╔╣╠╣╚═╝║╚══╝║║─║╔═╗║╚═╝║╚══╝║║─║╚═╝║╚══╗
-    ──╚╝─╚══╩═══╝────╚╝─╚╝─╚╩═══╝────╚╝─╚═══╩═══╝\n\n".yellow
+    ──╚╝─╚══╩═══╝────╚╝─╚╝─╚╩═══╝────╚╝─╚═══╩═══╝\n\n".magenta
   end
 
   def self.show_game_instructions
-    "Welcome!\n\n This is our Tic-Tac-Toc Game \n For this game you will need THE AMAZING INSTRUCTIONS: \n The game start in a grid table of 3x3 cells with numbers.\n You will be 2 players, the player 1 play first, and the second... play second, one turn by one, choosing what number play \n You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers\n".green
+    "Welcome!\n\n This is our Tic-Tac-Toc Game \n For this game you will need THE AMAZING INSTRUCTIONS: \n The game start in a grid table of 3x3 cells with numbers.\n You will be 2 players, the player 1 play first, and the second... play second, one turn by one, choosing what number play \n You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers\n".yellow
   end
 
   def self.show_who_play
@@ -37,18 +37,18 @@ class UserInterface
 
   def self.choose
     @turn = LogicGame.turn
-    "you choose #{@turn}".blue
+    "#{@turn} was chosen"
   end
 
   def self.invalid_move
-    'You choose an unvalid option, please try again and select an option from the available as shown'.red
+    'Invalid key. Please try again with one of the options shown below'.red
   end
 
   def self.show_win_game
     if !LogicGame.player_winner.nil?
       LogicGame.player_winner
     else
-      "It's a draw"
+      "IT'S A DRAW!".green
     end
   end
 end
@@ -70,9 +70,9 @@ class LogicGame
 
   def self.who_play?
     if @@turns_available.odd?
-      "Ready #{@@players[0]}: \n (moves available: #{@@available_moves}".light_red
+      "\nReady, #{@@players[0]}: \n (moves available: #{@@available_moves}".green
     else
-      "Ready #{@@players[1]}: \n (moves available: #{@@available_moves}".light_green
+      "\nReady, #{@@players[1]}: \n (moves available: #{@@available_moves}".magenta
     end
   end
 
@@ -117,9 +117,9 @@ class LogicGame
 
   def self.chossing_winner(count1, count2)
     if count1 > 2
-      @player_winner = "#{@@players[0]} win"
+      @player_winner = "\n\n**** #{@@players[0]} WINS! ****\n\n".green
     elsif count2 > 2
-      @player_winner = " #{@@players[1]} win"
+      @player_winner = "\n\n**** #{@@players[1]} WINS! ****\n\n".green
     end
     @@player_winner = @player_winner
     @@player_winner
@@ -169,7 +169,7 @@ class Board
     available_moves_shown = @@available_moves_shown
     board_line = '+---+---+---+'
 
-    " #{board_line}\n | #{available_moves_shown[0]} | #{available_moves_shown[1]} | #{available_moves_shown[2]} |\n #{board_line}\n | #{available_moves_shown[3]} | #{available_moves_shown[4]} | #{available_moves_shown[5]} |\n #{board_line}\n | #{available_moves_shown[6]} | #{available_moves_shown[7]} | #{available_moves_shown[8]} |\n #{board_line}".cyan
+    " #{board_line}\n | #{available_moves_shown[0]} | #{available_moves_shown[1]} | #{available_moves_shown[2]} |\n #{board_line}\n | #{available_moves_shown[3]} | #{available_moves_shown[4]} | #{available_moves_shown[5]} |\n #{board_line}\n | #{available_moves_shown[6]} | #{available_moves_shown[7]} | #{available_moves_shown[8]} |\n #{board_line}".yellow
   end
 end
 
