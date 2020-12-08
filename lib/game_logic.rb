@@ -1,4 +1,4 @@
-# rubocop: disable Style/ClassVars, Metrics/LineLength, Style/GuardClause
+# rubocop: disable Style/ClassVars, Metrics/LineLength, Style/GuardClause, Metrics/MethodLength
 require 'colorize'
 class UserInterface
   def self.players
@@ -27,7 +27,7 @@ class UserInterface
     ──╚╝─╚══╩═══╝────╚╝─╚╝─╚╩═══╝────╚╝─╚═══╩═══╝\n\n".magenta
   end
 
-  def self.show_game_instructions
+  def self.show_game_instr
     "Welcome!\n\n This is our Tic-Tac-Toc Game \n For this game you will need THE AMAZING INSTRUCTIONS: \n The game start in a grid table of 3x3 cells with numbers.\n You will be 2 players, the player 1 play first, and the second... play second, one turn by one, choosing what number play \n You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers\n".yellow
   end
 
@@ -86,13 +86,13 @@ class LogicGame
       Board.board_modf(@@avbl_moves, @map_avbl, @@avbl_moves_shown, @@turns_avbl)
       Board.gameboard
       @@turns_avbl -= 1
-      @@win = comparing_players if @@chosen_p1.size >= 3
+      @@win = compare_players if @@chosen_p1.size >= 3
     end
 
     @@win
   end
 
-  def self.comparing_players
+  def self.compare_players
     @@rows_cols.each do |n_row|
       count1 = 0
       count2 = 0
@@ -173,4 +173,4 @@ class Board
   end
 end
 
-# rubocop: enable Style/ClassVars, Metrics/LineLength, Style/GuardClause
+# rubocop: enable Style/ClassVars, Metrics/LineLength, Style/GuardClause,  Metrics/MethodLength

@@ -4,8 +4,8 @@ require 'colorized_string'
 
 puts UserInterface.welcome
 sleep 1
-puts UserInterface.show_game_instructions
-puts "Choose the name of player one: "
+puts UserInterface.show_game_instr
+puts 'Choose the name of player one: '
 name1 = gets.chomp.to_s.upcase!
 puts 'Choose the name of player two: '
 name2 = gets.chomp.to_s.upcase!
