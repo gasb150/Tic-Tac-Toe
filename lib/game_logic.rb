@@ -35,6 +35,7 @@ class UserInterface
   end
 
   def self.show_win_game
+    
     n = if !LogicGame.player_winner.nil?
           LogicGame.player_winner
         else
@@ -103,16 +104,17 @@ class LogicGame
   end
 
   def self.player_winner
+    
     @@player_winner
   end
 
   def self.chossing_winner(count1, count2)
     if count1 > 2
-      player_winner = "#{@@players[0]} win"
+      @player_winner = "#{@@players[0]} win"
     elsif count2 > 2
-      player_winner = " #{@@players[1]} win"
+      @player_winner = " #{@@players[1]} win"
     end
-    @@player_winner = player_winner
+    @@player_winner = @player_winner
     @@player_winner
   end
 
