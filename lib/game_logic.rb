@@ -1,4 +1,5 @@
 # rubocop: disable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength, Metrics/PerceivedComplexity
+require "colorize"
 class UserInterface
 
   def self.players
@@ -15,7 +16,7 @@ class UserInterface
   end
 
   def self.show_game_instructions
-    return  "Welcome! \n This is our Tic-Tac-Toc Game \n For this game you will need THE AMAZING INSTRUCTIONS: \n The game start in a grid table of 3x3 cells with numbers.\n You will be 2 players, the player 1 play first, and the second... play second, one turn by one, choosing what number play \n You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers\n"
+    return  "Welcome! \n This is our Tic-Tac-Toc Game \n For this game you will need THE AMAZING INSTRUCTIONS: \n The game start in a grid table of 3x3 cells with numbers.\n You will be 2 players, the player 1 play first, and the second... play second, one turn by one, choosing what number play \n You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers\n".green
   end
   
   def self.show_who_play ()
@@ -24,11 +25,13 @@ class UserInterface
   
   def self.choose()
     @turn = LogicGame.turn
-    return "you choose #{@turn}"
+    if @turn>=1
+    return "you choose #{@turn}".blue
+    end
   end
 
   def self.invalid_move?()
-    return 'You choose an unvalid option, please try again and select an option from the available as shown' 
+    return 'You choose an unvalid option, please try again and select an option from the available as shown'.red 
   end
 
 
@@ -69,9 +72,9 @@ class LogicGame
 
   def self.who_play?()
     if @@turns_available.odd?
-    return "Ready #{@@players[0]}: \n (moves available: #{@@available_moves}"
+    return "Ready #{@@players[0]}: \n (moves available: #{@@available_moves}".light_red
   else
-    return "Ready #{@@players[1]}: \n (moves available: #{@@available_moves}"
+    return "Ready #{@@players[1]}: \n (moves available: #{@@available_moves}".light_green
   end
 end
 
@@ -82,8 +85,8 @@ end
       @map_available = @@available_moves.reject { |a| a.to_i == turn.to_i }
       
        if @@available_moves.length == @map_available.length || turn.zero?
-        puts 'Select an option from the available as shown'
-        gameboard(available_moves_shown)
+        return UserInterface.invalid_move?
+        Board.gameboard()
       else
         available_moves_shown = Board.board_modf(@@available_moves, @map_available, @@available_moves_shown, @@turns_available)
         Board.gameboard()
@@ -167,7 +170,7 @@ class Board
   def self.gameboard()
     available_moves_shown=@@available_moves_shown
     board_line = '+---+---+---+'
-    return " #{board_line}\n | #{available_moves_shown[0]} | #{available_moves_shown[1]} | #{available_moves_shown[2]} |\n #{board_line}\n | #{available_moves_shown[3]} | #{available_moves_shown[4]} | #{available_moves_shown[5]} |\n #{board_line}\n | #{available_moves_shown[6]} | #{available_moves_shown[7]} | #{available_moves_shown[8]} |\n #{board_line}"
+    return " #{board_line}\n | #{available_moves_shown[0]} | #{available_moves_shown[1]} | #{available_moves_shown[2]} |\n #{board_line}\n | #{available_moves_shown[3]} | #{available_moves_shown[4]} | #{available_moves_shown[5]} |\n #{board_line}\n | #{available_moves_shown[6]} | #{available_moves_shown[7]} | #{available_moves_shown[8]} |\n #{board_line}".cyan
   end
 
 end
