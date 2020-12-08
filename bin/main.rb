@@ -1,4 +1,3 @@
-
 require './lib/game_logic'
 require 'colorize'
 
@@ -13,7 +12,7 @@ LogicGame.new(UserInterface.players)
 puts UserInterface.show_players
 puts Board.gameboard
 n = true
-while  n == true
+while n == true
   puts UserInterface.show_who_play
   x = LogicGame.game_play gets.chomp.to_i
   puts UserInterface.choose
