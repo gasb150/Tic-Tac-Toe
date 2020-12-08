@@ -26,11 +26,12 @@ We built a version of the classic Tic Tac Toe game to be played on the command l
 
 - Install Ruby
 
+- Type 'gem install colorize' on terminal to enable colors
+
 - Run ruby bin/main.rb to start the game
 
 
 ## Author
-
 
 
 👤 **German Aquila**
