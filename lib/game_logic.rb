@@ -1,4 +1,4 @@
-# rubocop: disable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength
+# rubocop: disable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength, Style/GuardClause
 require 'colorize'
 class UserInterface
   def self.players
@@ -30,18 +30,16 @@ class UserInterface
     "you choose #{@turn}".blue
   end
 
-  def self.invalid_move?
+  def self.invalid_move
     'You choose an unvalid option, please try again and select an option from the available as shown'.red
   end
 
   def self.show_win_game
-    
-    n = if !LogicGame.player_winner.nil?
-          LogicGame.player_winner
-        else
-          "It's a draw"
-        end
-    n
+    if !LogicGame.player_winner.nil?
+      LogicGame.player_winner
+    else
+      "It's a draw"
+    end
   end
 end
 
@@ -71,16 +69,16 @@ class LogicGame
   def self.game_play(turn)
     @@turn = turn
     @turn = turn
-    @@available_moves_shown = @@available_moves_shown
     @map_available = @@available_moves.reject { |a| a.to_i == turn.to_i }
     if @@available_moves.length == @map_available.length || turn.zero?
-      return "#{UserInterface.invalid_move?} "
+      return UserInterface.invalid_move
     else
       Board.board_modf(@@available_moves, @map_available, @@available_moves_shown, @@turns_available)
       Board.gameboard
       @@turns_available -= 1
       @@win = comparing_players if @@chosen_p1.size >= 3
     end
+
     @@win
   end
 
@@ -104,7 +102,6 @@ class LogicGame
   end
 
   def self.player_winner
-    
     @@player_winner
   end
 
@@ -166,4 +163,4 @@ class Board
   end
 end
 
-# rubocop: enable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength
+# rubocop: enable Metrics/MethodLength,Style/ClassVars, Metrics/LineLength, Style/GuardClause
