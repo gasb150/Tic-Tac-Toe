@@ -17,8 +17,18 @@ class UserInterface
     "you are #{@@players[0]} your mark is (X) and you choose go vs #{@@players[1]} his mark is (O)"
   end
 
+  def self.welcome
+    "
+    ╔════╦══╦═══╗──╔════╦═══╦═══╗──╔════╦═══╦═══╗
+    ║╔╗╔╗╠╣╠╣╔═╗║──║╔╗╔╗║╔═╗║╔═╗║──║╔╗╔╗║╔═╗║╔══╝
+    ╚╝║║╚╝║║║║─╚╝──╚╝║║╚╣║─║║║─╚╝──╚╝║║╚╣║─║║╚══╗
+    ──║║──║║║║─╔╗╔══╗║║─║╚═╝║║─╔╗╔══╗║║─║║─║║╔══╝
+    ──║║─╔╣╠╣╚═╝║╚══╝║║─║╔═╗║╚═╝║╚══╝║║─║╚═╝║╚══╗
+    ──╚╝─╚══╩═══╝────╚╝─╚╝─╚╩═══╝────╚╝─╚═══╩═══╝\n\n".yellow
+  end
+
   def self.show_game_instructions
-    "Welcome! \n This is our Tic-Tac-Toc Game \n For this game you will need THE AMAZING INSTRUCTIONS: \n The game start in a grid table of 3x3 cells with numbers.\n You will be 2 players, the player 1 play first, and the second... play second, one turn by one, choosing what number play \n You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers\n".green
+    "Welcome!\n\n This is our Tic-Tac-Toc Game \n For this game you will need THE AMAZING INSTRUCTIONS: \n The game start in a grid table of 3x3 cells with numbers.\n You will be 2 players, the player 1 play first, and the second... play second, one turn by one, choosing what number play \n You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers\n".green
   end
 
   def self.show_who_play

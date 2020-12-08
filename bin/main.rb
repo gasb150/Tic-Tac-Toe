@@ -1,10 +1,12 @@
 require './lib/game_logic'
 require 'colorize'
 
+puts UserInterface.welcome
+sleep 1
 puts UserInterface.show_game_instructions
-puts 'Chose the name of player_1'.light_red
+puts 'Chose the name of player one: '.light_red
 name1 = gets.chomp.to_s
-puts 'Chose the name of player_2'.light_blue
+puts 'Chose the name of player two: '.light_blue
 name2 = gets.chomp.to_s
 
 UserInterface.new(name1, name2)
