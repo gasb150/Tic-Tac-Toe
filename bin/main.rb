@@ -15,12 +15,13 @@ name2 = gets.chomp.to_s
 UserInterface.new(name1, name2)
 LogicGame.new(UserInterface.players)
 puts Board.gameboard()
-keep_playing = true
-while  keep_playing == true
-  p LogicGame.keep_playing()
+n = true
+while  n == true
+ 
  puts UserInterface.show_who_play
  puts UserInterface.choose()
- p LogicGame.game_play (gets.chomp.to_i)
+  LogicGame.game_play (gets.chomp.to_i)
+ n=LogicGame.keep_playing()
  puts Board.gameboard()
 end
 puts UserInterface.show_win_game

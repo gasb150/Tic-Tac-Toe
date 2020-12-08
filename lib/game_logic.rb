@@ -135,8 +135,10 @@ end
   end
   
    def self.keep_playing()
-    if !@@win.nil? && !@@turns_available.zero?
-     return true
+   
+    if @@win==false && !@@turns_available.zero?
+     
+      return true
    else
      false
    end
