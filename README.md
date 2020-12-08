@@ -1,6 +1,6 @@
-# Ruby Project - Advanced Building BLocks - Enumerables
+# Ruby Project - Tic Tac Toe
 
-This is the Ruby project #3, from the Microverse's main curriculum and aims to build the classic Tic Tac Toe game for 2 players.
+We built a version of the classic Tic Tac Toe game to be played on the command line. Two players can play against each other while the board and the keys for each move/position are displayed on the terminal.
 
 ## Built With
 
@@ -26,7 +26,7 @@ This is the Ruby project #3, from the Microverse's main curriculum and aims to b
 
 - Install Ruby
 
-- Run ruby bin/main.rb
+- Run ruby bin/main.rb to start the game
 
 
 ## Author
