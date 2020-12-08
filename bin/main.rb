@@ -20,7 +20,8 @@ while  n == true
  
  puts UserInterface.show_who_play
  puts UserInterface.choose()
-  LogicGame.game_play (gets.chomp.to_i)
+ x = LogicGame.game_play (gets.chomp.to_i)
+ puts  x if x.is_a?(String)
  n=LogicGame.keep_playing()
  puts Board.gameboard()
 end
