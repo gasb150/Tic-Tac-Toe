@@ -16,7 +16,6 @@ while n == true
   puts UserInterface.show_who_play
   x = LogicGame.game_play gets.chomp.to_i
   puts UserInterface.choose
-  p x
   puts x if x.is_a?(String)
   n = LogicGame.keep_playing
   puts Board.gameboard
