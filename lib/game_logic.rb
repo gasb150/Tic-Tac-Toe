@@ -57,9 +57,9 @@ class LogicGame
   @@rows_cols = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
   @@chosen_p1 = []
   @@chosen_p2 = []
-  @@turns_available = 9
-  @@available_moves = (1..9).to_a
-  @@available_moves_shown = @@available_moves
+  @@turns_avbl = 9
+  @@avbl_moves = (1..9).to_a
+  @@avbl_moves_shown = @@avbl_moves
   @@turn = 0
   @@win = false
 
@@ -69,23 +69,23 @@ class LogicGame
   end
 
   def self.who_play?
-    if @@turns_available.odd?
-      "\nReady, #{@@players[0]}: \n (moves available: #{@@available_moves}".green
+    if @@turns_avbl.odd?
+      "\nReady, #{@@players[0]}: \n (moves avbl: #{@@avbl_moves}".green
     else
-      "\nReady, #{@@players[1]}: \n (moves available: #{@@available_moves}".magenta
+      "\nReady, #{@@players[1]}: \n (moves avbl: #{@@avbl_moves}".magenta
     end
   end
 
   def self.game_play(turn)
     @@turn = turn
     @turn = turn
-    @map_available = @@available_moves.reject { |a| a.to_i == turn.to_i }
-    if @@available_moves.length == @map_available.length || turn.zero?
+    @map_avbl = @@avbl_moves.reject { |a| a.to_i == turn.to_i }
+    if @@avbl_moves.length == @map_avbl.length || turn.zero?
       return UserInterface.invalid_move
     else
-      Board.board_modf(@@available_moves, @map_available, @@available_moves_shown, @@turns_available)
+      Board.board_modf(@@avbl_moves, @map_avbl, @@avbl_moves_shown, @@turns_avbl)
       Board.gameboard
-      @@turns_available -= 1
+      @@turns_avbl -= 1
       @@win = comparing_players if @@chosen_p1.size >= 3
     end
 
@@ -125,8 +125,8 @@ class LogicGame
     @@player_winner
   end
 
-  def self.available_moves_shown
-    @@available_moves_shown
+  def self.avbl_moves_shown
+    @@avbl_moves_shown
   end
 
   def self.chosen_p1
@@ -142,34 +142,34 @@ class LogicGame
   end
 
   def self.keep_playing
-    true if @@win == false && !@@turns_available.zero?
+    true if @@win == false && !@@turns_avbl.zero?
   end
 end
 
 class Board
-  @@available_moves_shown = LogicGame.available_moves_shown
+  @@avbl_moves_shown = LogicGame.avbl_moves_shown
   @@chosen_p1 = LogicGame.chosen_p1
   @@chosen_p2 = LogicGame.chosen_p2
-  def self.board_modf(available_moves, map_available, available_moves_shown, turns_available)
-    @turns_available = turns_available
-    @available_moves = available_moves
-    @map_available = map_available
-    chosen = @available_moves - @map_available
-    if @turns_available.odd?
+  def self.board_modf(avbl_moves, map_avbl, avbl_moves_shown, turns_avbl)
+    @turns_avbl = turns_avbl
+    @avbl_moves = avbl_moves
+    @map_avbl = map_avbl
+    chosen = @avbl_moves - @map_avbl
+    if @turns_avbl.odd?
       @@chosen_p1 << chosen[-1]
-      available_moves_shown[chosen[-1] - 1] = 'X'
+      avbl_moves_shown[chosen[-1] - 1] = 'X'
     else
       @@chosen_p2 << chosen[-1]
-      available_moves_shown[chosen[-1] - 1] = 'O'
+      avbl_moves_shown[chosen[-1] - 1] = 'O'
     end
-    available_moves_shown
+    avbl_moves_shown
   end
 
   def self.gameboard
-    available_moves_shown = @@available_moves_shown
+    avbl_moves_shown = @@avbl_moves_shown
     board_line = '+---+---+---+'
 
-    " #{board_line}\n | #{available_moves_shown[0]} | #{available_moves_shown[1]} | #{available_moves_shown[2]} |\n #{board_line}\n | #{available_moves_shown[3]} | #{available_moves_shown[4]} | #{available_moves_shown[5]} |\n #{board_line}\n | #{available_moves_shown[6]} | #{available_moves_shown[7]} | #{available_moves_shown[8]} |\n #{board_line}".yellow
+    " #{board_line}\n | #{avbl_moves_shown[0]} | #{avbl_moves_shown[1]} | #{avbl_moves_shown[2]} |\n #{board_line}\n | #{avbl_moves_shown[3]} | #{avbl_moves_shown[4]} | #{avbl_moves_shown[5]} |\n #{board_line}\n | #{avbl_moves_shown[6]} | #{avbl_moves_shown[7]} | #{avbl_moves_shown[8]} |\n #{board_line}".yellow
   end
 end
 
