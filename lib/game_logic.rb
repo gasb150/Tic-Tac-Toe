@@ -1,4 +1,4 @@
-# rubocop: disable Style/ClassVars, Metrics/LineLength, Style/GuardClause, Metrics/MethodLength
+# rubocop: disable Style/ClassVars, Metrics/LineLength, Style/GuardClause
 require 'colorize'
 class UserInterface
   def self.players
@@ -173,4 +173,4 @@ class Board
   end
 end
 
-# rubocop: enable Style/ClassVars, Metrics/LineLength, Style/GuardClause,  Metrics/MethodLength
+# rubocop: enable Style/ClassVars, Metrics/LineLength, Style/GuardClause
