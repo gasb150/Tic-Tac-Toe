@@ -28,7 +28,7 @@ class UserInterface
   end
 
   def self.show_game_instr
-    "Welcome!\n\n This is our Tic-Tac-Toc Game \n For this game you will need THE AMAZING INSTRUCTIONS: \n The game start in a grid table of 3x3 cells with numbers.\n You will be 2 players, the player 1 play first, and the second... play second, one turn by one, choosing what number play \n You need complete a line (horizontal, vertical or diagonal) with 3 grid-cells or numbers\n".yellow
+    "Welcome!\n\n This is our Tic-Tac-Toc Game\n\nINSTRUCTIONS:\nThe game start in a grid table of 3x3 cells with numbers.\nEach player has a symbol to draw in any of the positions not yet taken by the other playey. Player 1 goes first. Each has one move per turn. The winning condition is to draw 3 symbols in a straight (horizontal, vertical or diagonal)\n".yellow
   end
 
   def self.show_who_play
