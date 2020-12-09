@@ -8,13 +8,15 @@ INSTRUCTIONS: The game start in a grid table of 3x3 cells with numbers. Each pla
 
 ## Built With
 
-- Ruby
+- Ruby 2.7.2p137 
+
+- VS Code
 
 ### Prerequisites
 
 - Ruby
 
-- VS Code
+- Type 'gem install colorize' on the terminal to enable colors
 
 ## Setup
 
@@ -29,8 +31,6 @@ INSTRUCTIONS: The game start in a grid table of 3x3 cells with numbers. Each pla
 - Run git clone https://github.com/gasb150/Tic-Tac-Toe
 
 - Install Ruby
-
-- Type 'gem install colorize' on terminal to enable colors
 
 - Run ruby bin/main.rb to start the game
 
