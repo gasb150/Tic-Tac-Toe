@@ -1,11 +1,15 @@
-require './lib/game_logic'
+#!/usr/bin/env ruby
+require_relative './lib/game_logic'
 require 'colorize'
+require 'colorized_string'
 
-puts UserInterface.show_game_instructions
-puts 'Chose the name of player_1'.light_red
-name1 = gets.chomp.to_s
-puts 'Chose the name of player_2'.light_blue
-name2 = gets.chomp.to_s
+puts UserInterface.welcome
+sleep 1
+puts UserInterface.show_game_instr
+puts 'Choose the name of player one: '
+name1 = gets.chomp.to_s.upcase!
+puts 'Choose the name of player two: '
+name2 = gets.chomp.to_s.upcase!
 
 UserInterface.new(name1, name2)
 LogicGame.new(UserInterface.players)
