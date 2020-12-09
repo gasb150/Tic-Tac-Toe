@@ -2,6 +2,10 @@
 
 We built a version of the classic Tic Tac Toe game to be played on the command line. Two players can play against each other while the board and the keys for each move/position are displayed on the terminal.
 
+# About (How to play the game)
+
+INSTRUCTIONS: The game start in a grid table of 3x3 cells with numbers. Each player has a symbol to draw in any of the positions not yet taken by the other player. Player 1 goes first, and each turn allows just one move. The winning condition is to draw 3 identical symbols in a straight, whether horizontal, vertical or diagonal.
+
 ## Built With
 
 - Ruby

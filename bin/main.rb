@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require './lib/game_logic'
 require 'colorize'
 require 'colorized_string'
